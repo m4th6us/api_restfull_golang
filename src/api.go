@@ -12,8 +12,9 @@ func main() {
 	r := mux.NewRouter()
 
 	// custumers routes
-	r.HandleFunc("/Customers", controllers.HandleReadCustomers).Methods("GET")
+	r.HandleFunc("/Customers", controllers.HandleFindAllCustomers).Methods("GET")
 	r.HandleFunc("/Customers", controllers.HandleCreateCustomer).Methods("POST")
+	r.HandleFunc("/Customers/{customer_id}", controllers.HandleFindOneCustomer).Methods("GET")
 
 	// products routes
 	r.HandleFunc("/Products", controllers.HandleReadProducts).Methods("GET")
