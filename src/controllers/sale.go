@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-var Sales []models.Sales
+var Sales []models.Sale
 
 func HandleReadSale(w http.ResponseWriter, r *http.Request) {
 
@@ -23,7 +23,7 @@ func HandleCreateSale(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 
-	var sale models.Sales
+	var sale models.Sale
 
 	err := json.NewDecoder(r.Body).Decode(&sale)
 

@@ -6,9 +6,13 @@ import (
 	"github.com/gorilla/mux"
 
 	"api_restfull/src/controllers"
+	"api_restfull/src/database"
 )
 
 func main() {
+
+	database.InitDB()
+
 	r := mux.NewRouter()
 
 	// custumers routes
@@ -17,8 +21,10 @@ func main() {
 	r.HandleFunc("/Customers/{customer_id}", controllers.HandleFindOneCustomer).Methods("GET")
 
 	// products routes
-	r.HandleFunc("/Products", controllers.HandleReadProducts).Methods("GET")
-	r.HandleFunc("/Products", controllers.HandleCreateProducts).Methods("POST")
+	r.HandleFunc("/Products", controllers.HandleFindAllProducts).Methods("GET")
+	r.HandleFunc("/Products", controllers.HandleCreateProduct).Methods("POST")
+	r.HandleFunc("/Products/{product_id}", controllers.HandleFindOneProduct).Methods("GET")
+
 
 	// sales routes
 	r.HandleFunc("/Sales", controllers.HandleReadSale).Methods("GET")
